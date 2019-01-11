@@ -1,9 +1,11 @@
 package org.iota.qcm.dataflow;
 
+import org.iota.qcm.Branch;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Flow {
+public class Flow implements Branch {
   Transition transition;
   List<ThrowingRunnable> runnables;
   Flow[] sources;
