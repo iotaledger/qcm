@@ -6,7 +6,7 @@ import org.junit.Test;
 public class FlowTest {
 
   @Test
-  public void testCopyingTransition() {
+  public void testCopyingTransition() throws Exception {
     Flow in, out;
     Transition copyingTransition;
     final int testSize = 9;
@@ -57,5 +57,36 @@ public class FlowTest {
 
     Assert.assertArrayEquals(exp, out.data.value);
 
+  }
+
+  @Test
+  public void testMergerTransition() {
+    Data input;
+    Flow in0, in1, in2, out;
+    Merger merger;
+    byte[] exp = new byte[]{1};
+
+    merger = new Merger(1);
+
+    input = new Data(3);
+    in0 = new Flow(input, 0, 1);
+    in1 = new Flow(input, 1, 1);
+    in2 = new Flow(input, 2, 1);
+    out = new Flow(merger, new Flow[]{in0, in1, in2});
+
+    input.value[0] = 1;
+
+    input.update();
+
+    Assert.assertArrayEquals(exp, out.data.value);
+
+    input.value[1] = 1;
+    input.update();
+
+    input.value[2] = 3;
+    try {
+      input.update();
+      Assert.fail();
+    } catch (Exception e) { }
   }
 }

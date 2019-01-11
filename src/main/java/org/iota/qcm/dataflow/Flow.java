@@ -31,7 +31,7 @@ public class Flow {
     });
   }
 
-  public void flow() {
+  public void flow() throws Exception {
     if(transition.accept(sources, data)) {
       data.update();
     }
