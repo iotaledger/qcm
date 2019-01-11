@@ -14,11 +14,20 @@ public class Lut implements Transition {
 
   @Override
   public boolean accept(Flow[] sources, Data data) {
-    for(int i = 0; i < data.value.length; i++) {
-      data.value[i] = table
-          [sources[0].data.value[i]]
-          [sources[1].data.value[i]]
-          [sources[2].data.value[i]];
+    boolean rv = false;
+    byte b;
+    if(sources[0] != null && sources[1] != null && sources[2] != null) {
+      for (int i = 0; i < data.value.length; i++) {
+        b = table
+            [sources[0].data.value[i]]
+            [sources[1].data.value[i]]
+            [sources[2].data.value[i]];
+        if(b != data.value[i]) {
+          rv = true;
+          data.value[i] = b;
+        }
+      }
+      return rv;
     }
     return false;
   }

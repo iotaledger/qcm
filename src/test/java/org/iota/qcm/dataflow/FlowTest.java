@@ -13,12 +13,12 @@ public class FlowTest {
     final byte inTestValue[] = {1,3,3,7,0,7,3,3,1};
 
     copyingTransition = new CopyingTransition(testSize);
-    in = new Flow(copyingTransition, new Flow[0]);
-    out = new Flow(copyingTransition, new Flow[]{in});
+    in = new Flow(copyingTransition, new Flow[0], null);
+    out = new Flow(copyingTransition, new Flow[]{in}, null);
 
     in.data.value = inTestValue;
 
-    in.flow();
+    in.invoke();
 
     Assert.assertArrayEquals(inTestValue, out.data.value);
   }
@@ -35,11 +35,11 @@ public class FlowTest {
     eqLut.addCell(2,2,2, (byte) 2);
     eqLut.addCell(3,3,3, (byte) 3);
 
-    input = new Data(3);
-    in0 = new Flow(input, 0, 1);
-    in1 = new Flow(input, 1, 1);
-    in2 = new Flow(input, 2, 1);
-    out = new Flow(eqLut, new Flow[]{in0, in1, in2});
+    input = new Data(3, null);
+    in0 = new Flow(input, 0, 1, null);
+    in1 = new Flow(input, 1, 1, null);
+    in2 = new Flow(input, 2, 1, null);
+    out = new Flow(eqLut, new Flow[]{in0, in1, in2}, null);
 
     input.value[0] = 1;
     input.value[1] = 1;
@@ -68,11 +68,11 @@ public class FlowTest {
 
     merger = new Merger(1);
 
-    input = new Data(3);
-    in0 = new Flow(input, 0, 1);
-    in1 = new Flow(input, 1, 1);
-    in2 = new Flow(input, 2, 1);
-    out = new Flow(merger, new Flow[]{in0, in1, in2});
+    input = new Data(3, null);
+    in0 = new Flow(input, 0, 1, null);
+    in1 = new Flow(input, 1, 1, null);
+    in2 = new Flow(input, 2, 1, null);
+    out = new Flow(merger, new Flow[]{in0, in1, in2}, null);
 
     input.value[0] = 1;
 

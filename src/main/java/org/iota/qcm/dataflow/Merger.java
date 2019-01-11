@@ -22,6 +22,9 @@ public class Merger implements Transition {
     for(int i = 0; i < data.value.length; i++) {
       b = 0;
       for(Flow source: sources) {
+        if (source == null) {
+          continue;
+        }
         if(data.value[i] != 0 && source.data.value[i] != 0 && source.data.value[i] != data.value[i]) {
           throw new CollidingDataException();
         } else if (source.data.value[i] != 0) {
