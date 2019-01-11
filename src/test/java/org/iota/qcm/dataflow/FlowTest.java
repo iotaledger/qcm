@@ -18,8 +18,44 @@ public class FlowTest {
 
     in.data.value = inTestValue;
 
-    in.update();
+    in.flow();
 
     Assert.assertArrayEquals(inTestValue, out.data.value);
+  }
+
+  @Test
+  public void testLookupTransition() {
+    Data input;
+    Flow in0, in1, in2, out;
+    Lut eqLut;
+    byte[] exp = new byte[]{1};
+
+    eqLut = new Lut();
+    eqLut.addCell(1,1,1, (byte) 1);
+    eqLut.addCell(2,2,2, (byte) 2);
+    eqLut.addCell(3,3,3, (byte) 3);
+
+    input = new Data(3);
+    in0 = new Flow(input, 0, 1);
+    in1 = new Flow(input, 1, 1);
+    in2 = new Flow(input, 2, 1);
+    out = new Flow(eqLut, new Flow[]{in0, in1, in2});
+
+    input.value[0] = 1;
+    input.value[1] = 1;
+    input.value[2] = 1;
+
+    input.update();
+
+    Assert.assertArrayEquals(exp, out.data.value);
+
+    input.value[0] = 0;
+    input.value[1] = 0;
+    input.value[2] = 0;
+    exp[0] = 0;
+    input.update();
+
+    Assert.assertArrayEquals(exp, out.data.value);
+
   }
 }

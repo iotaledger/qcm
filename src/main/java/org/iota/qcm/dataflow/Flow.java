@@ -16,19 +16,24 @@ public class Flow {
     runnables = new ArrayList<>();
 
     for(Flow source: mySources) {
-      source.onUpdate(this::update);
+      source.data.onUpdate(this::flow);
     }
   }
 
-  public void update() {
+  public Flow(Data input, int start, int size) {
+    transition = null;
+    sources = null;
+    data = new Data(size);
+
+    input.onUpdate(() -> {
+      System.arraycopy(input.value, start, data.value, 0, size);
+      data.update();
+    });
+  }
+
+  public void flow() {
     if(transition.accept(sources, data)) {
-      for (ThrowingRunnable runnable : runnables) {
-        runnable.run();
-      }
+      data.update();
     }
-  }
-
-  public void onUpdate(ThrowingRunnable runnable) {
-    runnables.add(runnable);
   }
 }
