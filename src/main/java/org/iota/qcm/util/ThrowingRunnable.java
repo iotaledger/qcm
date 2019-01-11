@@ -1,4 +1,4 @@
-package org.iota.qcm.dataflow;
+package org.iota.qcm.util;
 
 public interface ThrowingRunnable extends Runnable {
 

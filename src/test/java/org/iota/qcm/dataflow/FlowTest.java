@@ -25,7 +25,7 @@ public class FlowTest {
 
   @Test
   public void testLookupTransition() {
-    Data input;
+    ByteData input;
     Flow in0, in1, in2, out;
     Lut eqLut;
     byte[] exp = new byte[]{1};
@@ -35,7 +35,7 @@ public class FlowTest {
     eqLut.addCell(2,2,2, (byte) 2);
     eqLut.addCell(3,3,3, (byte) 3);
 
-    input = new Data(3, null);
+    input = new ByteData(3, null);
     in0 = new Flow(input, 0, 1, null);
     in1 = new Flow(input, 1, 1, null);
     in2 = new Flow(input, 2, 1, null);
@@ -61,14 +61,14 @@ public class FlowTest {
 
   @Test
   public void testMergerTransition() {
-    Data input;
+    ByteData input;
     Flow in0, in1, in2, out;
     Merger merger;
     byte[] exp = new byte[]{1};
 
     merger = new Merger(1);
 
-    input = new Data(3, null);
+    input = new ByteData(3, null);
     in0 = new Flow(input, 0, 1, null);
     in1 = new Flow(input, 1, 1, null);
     in2 = new Flow(input, 2, 1, null);

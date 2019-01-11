@@ -13,7 +13,7 @@ public class Lut implements Transition {
   }
 
   @Override
-  public boolean accept(Flow[] sources, Data data) {
+  public boolean accept(Flow[] sources, ByteData data) {
     boolean rv = false;
     byte b;
     if(sources[0] != null && sources[1] != null && sources[2] != null) {

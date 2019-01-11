@@ -1,7 +1,5 @@
 package org.iota.qcm.dataflow;
 
-import java.util.Arrays;
-
 public class Merger implements Transition {
   int mySize;
 
@@ -16,7 +14,7 @@ public class Merger implements Transition {
   }
 
   @Override
-  public boolean accept(Flow[] sources, Data data) throws CollidingDataException {
+  public boolean accept(Flow[] sources, ByteData data) throws CollidingDataException {
     boolean rv = false;
     byte b;
     for(int i = 0; i < data.value.length; i++) {

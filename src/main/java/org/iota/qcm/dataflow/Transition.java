@@ -2,5 +2,5 @@ package org.iota.qcm.dataflow;
 
 public interface Transition {
   int size();
-  boolean accept(Flow[] sources, Data value) throws Exception;
+  boolean accept(Flow[] sources, ByteData value) throws Exception;
 }

@@ -13,7 +13,7 @@ public class CopyingTransition implements Transition{
   }
 
   @Override
-  public boolean accept(Flow[] sources, Data value) {
+  public boolean accept(Flow[] sources, ByteData value) {
     int index = 0;
     for(Flow source: sources) {
       System.arraycopy(source.data.value, 0, value.value, index, source.data.value.length);
