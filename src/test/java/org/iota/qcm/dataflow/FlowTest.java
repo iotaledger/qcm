@@ -9,15 +9,17 @@ public class FlowTest {
   public void testCopyingTransition() {
     Flow in, out;
     Transition copyingTransition;
+    final int testSize = 9;
+    final byte inTestValue[] = {1,3,3,7,0,7,3,3,1};
 
-    copyingTransition = new CopyingTransition(9);
+    copyingTransition = new CopyingTransition(testSize);
     in = new Flow(copyingTransition, new Flow[0]);
     out = new Flow(copyingTransition, new Flow[]{in});
 
-    in.data.value[0] = 24;
+    in.data.value = inTestValue;
 
     in.update();
 
-    Assert.assertArrayEquals(in.data.value, out.data.value);
+    Assert.assertArrayEquals(inTestValue, out.data.value);
   }
 }
