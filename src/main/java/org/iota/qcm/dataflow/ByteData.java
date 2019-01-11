@@ -27,4 +27,14 @@ public class ByteData implements Data {
     runnables.add(runnable);
   }
 
+  @Override
+  public int size() {
+    return value.length;
+  }
+
+  @Override
+  public void set(int i, byte v) {
+    value[i] = v;
+  }
+
 }

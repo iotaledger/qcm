@@ -1,5 +1,7 @@
 package org.iota.qcm.dataflow;
 
+import org.iota.qcm.util.CollidingDataException;
+
 public class Merger implements Transition {
   int mySize;
 
